@@ -1,13 +1,14 @@
 #include "sort.h"
 /**
  * bubble_sort - function that sorts an array of integers in ascendig order
- * @array:
+ * @array: array of numbers
  * @size: Nuenber of elements in the array
  */
 void bubble_sort(int *array, size_t size)
 {
 	unsigned int i, j;
-	for (i = 0; i < size -1; i++)
+
+	for (i = 0; i < size - 1; i++)
 	{
 		for (j = 0; j < (size - i - 1); j++)
 		{
