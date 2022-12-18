@@ -1,44 +1,33 @@
 #include "sort.h"
 /**
  * insertion_sort_list - function that sorts a doubly linked list of integers in ascending order using the Insertion sort algorithm
- * @list:
+ * @list: nodes
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *current;
-	if (list == NULL || *list == NULL || (*list)->next == NULL)
-	{
+	listint_t *now, *last;
+
+	if (!list || !(*list))
 		return;
-	}
-
-	current = (*list)->next; /** start at the second element of the list*/
-	while (current)
+	for (now = (*list)->next; now; now = now->next)
 	{
-		listint_t *prev = current->prev;
-		while (prev && prev->n > current->n)
-		{
-			listint_t *temp = current;
-			current = prev;
-			prev = temp;
+	while (now->prev && now->prev->n > now->n)
+	{
+	last = now->prev;
+	now->prev = last->prev;
+	last->prev = now;
+	last->next = now->next;
+	now->next = last;
+	if (now->prev)
+		now->prev->next = now;
+	else
+	*list = now;
 
-			prev->prev = current->prev;
-			prev->next = current;
-			current->prev = prev;
-			current->next = temp->next;
-			if (temp->next)
-			{
-				temp->next->prev = current;
-			}
-			print_list(*list);
-		
-			prev = prev->prev;
-		}
-			if (prev == NULL)
-			{
-			*list = current;
-			}
-		}
-	current = current->next;
+	if (last->next)
+		last->next->prev = last;
+	print_list(*list);
+	}
+	}
 }
 
 
