@@ -1,6 +1,6 @@
 #include "sort.h"
 /**
- * quick_sort - 
+ * quick_sort - function
  * @array: array
  * @size: size of array
  */
